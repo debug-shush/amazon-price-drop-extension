@@ -1,14 +1,20 @@
-const bodyParser = require('body-parser')
-const express = require('express')
-const morgan = require('morgan')
-const cors = require('cors')
-const server = express()
+var bodyParser = require('body-parser')
+var express = require('express')
+var app = express()
+var app = express();
 const port = 3000
 
-server.get('/', (req, res) => {
+app.use(bodyParser.json())
+app.use(express.static(__dirname))
+
+app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+app.post("/save-products", (req, res) => {
+  console.log("req.body in save-products route: ", req.body);
+  res.send("jai hind!");
+});
